@@ -1,5 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import {useLocation} from "react-router-dom";
+import {AddToFavourite} from "../AddToFavourite/AddToFavourite";
 
 
 interface DetailsProps {
@@ -26,6 +27,7 @@ const Details: FC<DetailsProps> = () => {
         <>
             <div>
                 <h2>details of {name}</h2> not implemented yet
+                {name && <AddToFavourite name={name}/>}
             </div>
         </>
     );

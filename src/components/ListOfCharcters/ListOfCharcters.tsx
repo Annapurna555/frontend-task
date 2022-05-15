@@ -53,7 +53,6 @@ const ListOfCharcters: FC<ListOfCharctersProps> = ({buttonNumber}) => {
             <input type="text" id="myInput" onKeyUp={handleSearchIntput} placeholder="Search for names.."/>
             <UnorderedList>
                 {users && users.map(v => {
-
                     return <ListItem key={v.name} name={v.name} url={v.url}/>
                 })}
             </UnorderedList>
