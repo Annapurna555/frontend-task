@@ -1,18 +1,14 @@
 import React from 'react';
 import './App.css';
-import {PaginationButtons} from "./components/PaginationButtons/PaginationButtons";
-import {Route, Routes} from "react-router-dom";
-import Details from "./components/Details/Details";
+import ListOfCharcters from "./components/ListOfCharcters/ListOfCharcters";
 
 function App() {
-    return (
-        <div className="App">
-            <Routes>
-                <Route path={"/"} element={<PaginationButtons/>}/>
-                <Route path={"/details/:name"} element={<Details/>}/>
-            </Routes>
-        </div>
-    );
+  return (
+    <div className="App">
+        <ListOfCharcters/>
+    </div>
+  );
 }
 
 export default App;
+/*<FastFetch />*/

@@ -6,7 +6,7 @@ interface UnorderedListProps {
 }
 
 const UnorderedList: FC<UnorderedListProps> = ({children}) => (
-    <ul id="myUL">{children}</ul>
+    <ul>{children}</ul>
 );
 
 export default UnorderedList;
