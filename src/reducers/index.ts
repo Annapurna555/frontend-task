@@ -3,5 +3,5 @@ import favouriteList from "./favouriteList";
 
 
 export default combineReducers({
-    favouriteList
+    favouriteList,
 })

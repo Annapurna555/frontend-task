@@ -1,20 +1,23 @@
 import React, {FC} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from '../../app/store'
+import {useDispatch} from "react-redux";
 import addToFavourite from '../../actionCreators/addToFavourite'
 
 interface AddToFavourite {
-    name: string
+    url: string
 }
 
 
-export const AddToFavourite: FC<AddToFavourite> = ({name}) => {
-    const list = useSelector((state: RootState) => state.favouriteList)
-    console.log(list)
+export const AddToFavourite: FC<AddToFavourite> = ({url}) => {
     const dispatch = useDispatch()
+    const handleClick = () => {
+        dispatch(addToFavourite(url))
+    }
 
-
-    return <button onClick={(e) => {
-        dispatch(addToFavourite(name))
-    }}>+</button>
+    return (
+        <div className={"details"}>
+            <div>
+                <button onClick={handleClick}>+</button>
+            </div>
+        </div>
+    )
 }
