@@ -27,7 +27,8 @@ const Details: FC<DetailsProps> = () => {
         <>
             <div>
                 <h2>details of {name}</h2> not implemented yet
-                {name && <AddToFavourite name={name}/>}
+                {name && <AddToFavourite url={url}/>}
+
             </div>
         </>
     );

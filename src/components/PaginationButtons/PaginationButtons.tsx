@@ -1,6 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 import ListOfCharcters from "../ListOfCharcters/ListOfCharcters";
 
+
 interface PaginationButtons {
 }
 
