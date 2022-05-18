@@ -10,7 +10,7 @@ interface ListItemProps {
 
 
 const ListItem: FC<ListItemProps> = ({name, url}) => (
-    <li><Link to={`/details/character`} state={{url: `${url}`}}>{name}</Link><AddToFavourite url={url}/></li>
+    <li><Link to={`/details`} state={{url: `${url}`}}>{name}</Link><AddToFavourite url={url}/></li>
 );
 
 export default ListItem;

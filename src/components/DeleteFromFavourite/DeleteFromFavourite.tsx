@@ -1,4 +1,4 @@
-import {FC, useLayoutEffect, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import deleteFromFavourite from "../../actionCreators/deleteFromFavourite";
 import {useDispatch} from "react-redux";
 import {Modal} from "../../Modal/Modal";
@@ -20,7 +20,7 @@ export const DeleteFromFavourite: FC<DeleteFromFavourite> = ({url}) => {
     const [isDataFetch, setIsDataFetch] = useState(false)
     const dispatch = useDispatch()
 
-    useLayoutEffect(() => {
+    useEffect(() => {
 
         (async () => {
             const request = await fetch(url)
@@ -44,7 +44,7 @@ export const DeleteFromFavourite: FC<DeleteFromFavourite> = ({url}) => {
             {modal ? (
                 <Modal>
                     <div>
-                        <h1>Do you want to add character to your favourite list?</h1>
+                        <h1>Do you want to delete this character to your favourite list?</h1>
                         <div className={"buttons"}>
                             <button onClick={() => {
                                 dispatch(deleteFromFavourite(url))
