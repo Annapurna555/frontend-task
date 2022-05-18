@@ -2,10 +2,10 @@ import React, {FC, useEffect, useState} from 'react';
 import {BASE_URL} from "../../API/BASE_URL";
 import UnorderedList from "../UnorderedList/UnorderedList";
 import ListItem from "../ListItem/ListItem";
-
+import {NavBar} from "../NavBar/NavBar";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 interface ListOfCharctersProps {
-    buttonNumber: string
 }
 
 interface UserProps {
@@ -13,22 +13,29 @@ interface UserProps {
     url: string
 }
 
-
-const ListOfCharcters: FC<ListOfCharctersProps> = ({buttonNumber}) => {
+export const ListOfCharcters: FC<ListOfCharctersProps> = () => {
     const [users, setUsers] = useState<UserProps[] | undefined>()
-
+    const [buttonNumber, setButtonNumber] = useState<string | undefined>("1")
+    const [err, setErr] = useState(false)
+    const [total, setTotal] = useState<string | null>();
+    if (err) {
+        throw err
+    }
 
     useEffect(() => {
         async function getUsers() {
             const response = await fetch(`${BASE_URL}/people/?page=${buttonNumber}`)
-            const json = await response.json()
-            setUsers(json.results)
-
+            if (response.status === 200) {
+                const json = await response.json()
+                setUsers(json.results)
+                setTotal(json.count)
+            } else {
+                setErr(true)
+            }
         }
 
         getUsers()
     }, [buttonNumber])
-
 
     function handleSearchIntput() {
         let input = document.getElementById('myInput') as HTMLInputElement;
@@ -48,17 +55,62 @@ const ListOfCharcters: FC<ListOfCharctersProps> = ({buttonNumber}) => {
         }
     }
 
+    const createButtons = () => {
+        const array = total && setNumberOfButtons(total)
+        return (
+            <>
+                {array && array.map((v) => {
+                        return <button onClick={buttonHandler} key={v} id={v}>{v}</button>
+                    }
+                )}
+            </>
+        )
+    }
+
+    const setNumberOfButtons = (totalCount: string) => {
+        let buttonCount: string[] = []
+        let amountOfButtons = (+totalCount / 10) + 1
+        let counter = 1
+        while (counter < amountOfButtons) {
+            buttonCount.push("" + counter)
+            counter++
+        }
+        return buttonCount
+    }
+
+    const buttonHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault()
+        const button = event.currentTarget as HTMLInputElement
+        const value: string = button.id
+        console.log(value)
+        setButtonNumber(value)
+    }
+
     return (
         <div>
-            <input type="text" id="myInput" onKeyUp={handleSearchIntput} placeholder="Search for names.."/>
-            <UnorderedList>
-                {users && users.map(v => {
-                    return <ListItem key={v.name} name={v.name} url={v.url}/>
-                })}
-            </UnorderedList>
-
+            {
+                <>
+                    <NavBar/>
+                    <input type="text" id="myInput" onKeyUp={handleSearchIntput} placeholder="Search for names.."/>
+                    <UnorderedList>
+                        {users && users.map(v => {
+                            return <ListItem key={v.name} name={v.name} url={v.url}/>
+                        })}
+                    </UnorderedList>
+                    {createButtons()}
+                </>
+            }
         </div>
     )
 };
 
-export default ListOfCharcters;
+export const FullList = () => {
+    return (
+        <ErrorBoundary>
+            <ListOfCharcters/>
+        </ErrorBoundary>
+    )
+}
+
+
+/*{buttonNumber && <PaginationButtons buttonNumber={buttonNumber}/>}*/

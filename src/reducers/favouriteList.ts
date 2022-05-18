@@ -10,6 +10,8 @@ export default function favouriteList(state: string[] = [], action: PayloadActio
             return [...state, action.payload].filter(unique)
         case "DELETE_FROM_FAVOURITE":
             return state.filter(e => e !== action.payload as unknown as string)
+        case "DELETE_ALL_FROM_FAVOURITE":
+            return state = []
         default:
             return state
     }

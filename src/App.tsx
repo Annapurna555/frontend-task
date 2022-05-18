@@ -1,21 +1,22 @@
 import React from 'react';
 import './App.css';
-import {PaginationButtons} from "./components/PaginationButtons/PaginationButtons";
 import {Route, Routes} from "react-router-dom";
-import Details from "./components/Details/Details";
+import {DetailsErrorBoundary} from "./components/Details/Details";
 import {FavouriteList} from "./components/FavouriteList/FavouriteList";
-import {NavBar} from "./components/NavBar/NavBar";
+import {NotFound} from "./components/NotFound/NotFound";
+import {FullList} from "./components/ListOfCharcters/ListOfCharcters";
 
 function App() {
     return (
         <>
             <div id={"modal"}></div>
             <div className="App">
-                <NavBar/>
                 <Routes>
-                    <Route path={"/"} element={<PaginationButtons/>}/>
-                    <Route path={"/details/:name"} element={<Details/>}/>
+                    <Route path={"/"} element={<FullList/>}/>
+                    <Route path={"/details"} element={<DetailsErrorBoundary/>}/>
                     <Route path={"/favouriteList"} element={<FavouriteList/>}/>
+                    <Route path={"*"} element={<NotFound/>}/>
+
                 </Routes>
             </div>
         </>
