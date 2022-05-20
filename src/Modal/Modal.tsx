@@ -5,7 +5,6 @@ interface Modal {
     children: React.ReactNode
 }
 
-
 export const Modal: FC<Modal> = ({children}) => {
     const elRef: MutableRefObject<HTMLDivElement | null> = useRef(null)
     if (!elRef.current) {
@@ -25,5 +24,6 @@ export const Modal: FC<Modal> = ({children}) => {
 
 
     }, [])
+
     return createPortal(<div>{children}</div>, elRef.current)
 }

@@ -1,187 +1,300 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+    box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
+body {
+    background-color: #fff;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+
+}
+
+.App {
+    background-color: #1818c4;
+}
+
+.home a {
+    color: #090909;
+    padding: 0.7em 1.7em;
+    font-size: 18px;
+    border-radius: 0.5em;
+    background: #e8e8e8;
+    border: 1px solid #e8e8e8;
+    transition: all .3s;
+    box-shadow: 6px 6px 12px #c5c5c5,
+    -6px -6px 12px #ffffff;
+    text-decoration: none;
 }
 
 
 #myInput {
-  /*background-image: url('/css/searchicon.png');*/ /* Add a search icon to input */
-  background-position: 10px 12px; /* Position the search icon */
-  background-repeat: no-repeat; /* Do not repeat the icon image */
-  width: 100%; /* Full-width */
-  font-size: 16px; /* Increase font-size */
-  padding: 12px 20px 12px 40px; /* Add some padding */
-  border: 1px solid #ddd; /* Add a grey border */
-  margin-bottom: 12px; /* Add some space below the input */
+    width: 30%;
+    height: 50px;
+    line-height: 28px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    outline: none;
+    background-color: #f7f7fc;
+    color: #0d0c22;
+    transition: .3s ease;
+    font-size: 16px;
+    margin-left: 20px;
 }
 
-#myUL {
-  /* Remove default list styling */
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+#myInput:focus, #myInput:hover {
+    outline: none;
+    border-color: #1A1A1A;
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgb(0, 0, 0, 0.25);
 }
 
 #myUL li {
-  display: flex;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
 }
 
-#myUL li a {
-  border: 1px solid #ddd; /* Add a border to all links */
-  margin-top: -1px; /* Prevent double borders */
-  background-color: #f6f6f6; /* Grey background color */
-  padding: 12px; /* Add some padding */
-  text-decoration: none; /* Remove default text underline */
-  font-size: 18px; /* Increase the font-size */
-  color: black; /* Add a black text color */
-  display: block; /* Make it into a block element to fill the whole list */
-}
-
-#myUL li a:hover:not(.header) {
-  background-color: #eee; /* Add a hover effect to all links, except for headers */
-  display: block;
+.characters-list-element {
+    border: 1px solid #ddd;
+    width: 55%;
+    margin-top: -1px;
+    background-color: #ffffff;
+    padding: 0;
+    text-decoration: none;
+    font-size: 14px;
+    color: black;
+    display: inline-flex;
+    justify-content: space-between;
 
 }
 
-#myUl li a:hover + .a {
-  display: block;
+.characters-list-element a {
+    width: 100%;
+    justify-content: right;
+    text-align: start;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+    color: #1A1A1A;
 }
 
-/*
-.addingButton{
-  display: none;
+.characters-list-element a:hover {
+    background: #efe9e9;
 }
-*/
 
-/*
-button:hover:not(.addingButton) {
-  display: block;
-
+.pagination-buttons {
+    appearance: none;
+    background-color: transparent;
+    border: 0.125em solid #1A1A1A;
+    border-radius: 0.9375em;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    min-height: 1.75em;
+    min-width: 0;
+    outline: none;
+    padding: 0.5em 1em;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    will-change: transform;
+    margin: 1px;
 }
-*/
+
+.pagination-buttons:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+
 .addingButton:hover {
-  display: block;
+    display: block;
 }
 
-/*
-button:hover{
-  display: block;
-
-}
-*/
-
-
-.details p {
-  line-height: 1.5;
-  padding: 0px 15px;
-}
-
-.details h1 {
-  text-align: center;
-  color: #333;
-  font-size: 60px;
-  margin: 5px 0px;
+.details {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+    padding-left: 50px;
+    font-size: 15px;
 }
 
 .details h2 {
-  text-align: center;
-  margin: 5px 0px 20px 0px;
+    padding-left: 8px;
+    font-size: 20px;
 }
 
-.search-params button,
-#modal button,
 .details button {
-  background-color: #ad343e;
-  padding: 5px 25px;
-  color: white;
-  font-size: 18px;
-  border: #333 1px solid;
-  border-radius: 5px;
-  display: block;
-  margin: 0 auto;
-  cursor: pointer;
+    width: 100px;
 }
 
 #modal {
-  background-color: rgba(0, 0, 0, 0.9);
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #modal:empty {
-  display: none;
+    display: none;
 }
 
 #modal > div {
-  background-color: white;
-  max-width: 500px;
-  padding: 15px;
-  text-align: center;
-  border-radius: 30px;
-  background: #faeff0;
+    background-color: white;
+    max-width: 500px;
+    padding: 15px;
+    text-align: center;
+    border-radius: 30px;
 }
 
 #modal .buttons button {
-  display: inline-block;
-  margin-right: 15px;
+    display: inline-block;
+    margin-right: 15px;
+    background: red;
+    color: white;
+}
+
+#modal .buttons button:last-child {
+    display: inline-block;
+    margin-right: 15px;
+    background-color: rgb(45, 175, 36);
+    color: white;
+}
+
+.add-to-favourite button {
+    background-color: rgb(96, 190, 250);
+    padding: 5px 25px;
+    margin: 8px;
+    color: white;
+    font-size: 18px;
+    border: #333 0 solid;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-to-favourite button:hover {
+    background: rgb(96, 210, 250);
 }
 
 
-.details {
-  width: 95%;
-  margin: 0 auto;
-  padding: 15px;
-  border-radius: 9px;
-  margin-bottom: 25px;
+.favourite-characters-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .deleteCharacter {
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .deleteCharacter button {
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    background-color: white;
+    color: black;
+}
+
+
+.deleteCharacter button:hover {
+    background-color: red;
+    box-shadow: 0 15px 20px rgba(255, 40, 66, 0.4);
+    color: #fff;
+}
+
+.delete-all-characters-button {
+    margin-top: 10px;
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
 
 }
 
-.deleteCharacter button {
-  width: 50px;
-  height: 25px;
-  cursor: pointer;
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
-  background: #e62222;
+.delete-all-characters-button:hover {
+    background-color: red;
+    box-shadow: 0 15px 20px rgba(255, 40, 66, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
 }
 
-button .text {
-  color: white;
-  font-weight: bold;
+.nav-bar {
+    display: flex;
+    align-content: flex-end;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    background: rgba(0, 209, 236, 0.2);
+    padding: 0.5em 1.7em;
 }
 
-.deleteCharacter button h1:hover {
-  display: none;
+.nav-bar a {
+    border-radius: 0.9375em;
+    text-decoration: none;
+    padding: 0.7em 2em;
+    font-size: 16px;
+    font-weight: 600;
+    background: rgb(96, 190, 250);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.nav-bar a:hover {
+    background: rgb(96, 210, 250);
+
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: rgba(0, 209, 236, 0.2);
+    color: white;
+    text-align: center;
 }
 
 

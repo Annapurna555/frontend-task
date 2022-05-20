@@ -5,6 +5,7 @@ import {DetailsErrorBoundary} from "./components/Details/Details";
 import {FavouriteList} from "./components/FavouriteList/FavouriteList";
 import {NotFound} from "./components/NotFound/NotFound";
 import {FullList} from "./components/ListOfCharcters/ListOfCharcters";
+import {Home} from "./components/Home/Home";
 
 function App() {
     return (
@@ -12,7 +13,8 @@ function App() {
             <div id={"modal"}></div>
             <div className="App">
                 <Routes>
-                    <Route path={"/"} element={<FullList/>}/>
+                    <Route path={"/"} element={<Home/>}/>
+                    <Route path={"/characters"} element={<FullList/>}/>
                     <Route path={"/details"} element={<DetailsErrorBoundary/>}/>
                     <Route path={"/favouriteList"} element={<FavouriteList/>}/>
                     <Route path={"*"} element={<NotFound/>}/>
