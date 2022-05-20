@@ -4,6 +4,7 @@ import UnorderedList from "../UnorderedList/UnorderedList";
 import ListItem from "../ListItem/ListItem";
 import {NavBar} from "../NavBar/NavBar";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+import {Footer} from "../Footer/Footer";
 
 interface ListOfCharctersProps {
 }
@@ -60,7 +61,7 @@ export const ListOfCharcters: FC<ListOfCharctersProps> = () => {
         return (
             <>
                 {array && array.map((v) => {
-                        return <button onClick={buttonHandler} key={v} id={v}>{v}</button>
+                    return <button className={"pagination-buttons"} onClick={buttonHandler} key={v} id={v}>{v}</button>
                     }
                 )}
             </>
@@ -68,21 +69,20 @@ export const ListOfCharcters: FC<ListOfCharctersProps> = () => {
     }
 
     const setNumberOfButtons = (totalCount: string) => {
-        let buttonCount: string[] = []
-        let amountOfButtons = (+totalCount / 10) + 1
+        let buttonArray: string[] = []
+        let numberOfButtons = (+totalCount / 10) + 1
         let counter = 1
-        while (counter < amountOfButtons) {
-            buttonCount.push("" + counter)
+        while (counter < numberOfButtons) {
+            buttonArray.push("" + counter)
             counter++
         }
-        return buttonCount
+        return buttonArray
     }
 
     const buttonHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
         const button = event.currentTarget as HTMLInputElement
         const value: string = button.id
-        console.log(value)
         setButtonNumber(value)
     }
 
@@ -98,6 +98,7 @@ export const ListOfCharcters: FC<ListOfCharctersProps> = () => {
                         })}
                     </UnorderedList>
                     {createButtons()}
+                    <Footer/>
                 </>
             }
         </div>
@@ -111,6 +112,3 @@ export const FullList = () => {
         </ErrorBoundary>
     )
 }
-
-
-/*{buttonNumber && <PaginationButtons buttonNumber={buttonNumber}/>}*/

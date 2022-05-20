@@ -21,11 +21,10 @@ class ErrorBoundary extends Component<IProps> {
             return (
                 <div>
                     <h2>
-                        There was an error <br/>
-                        <Link to={"/favouriteList"}>Click here</Link> to back to home page
+                        An error occur <br/>
+                        <Link to={"/"}>Click here</Link> to back to home page
                     </h2>
                 </div>
-
             );
         }
         return this.props.children

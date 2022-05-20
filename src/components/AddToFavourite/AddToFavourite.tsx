@@ -6,7 +6,6 @@ interface AddToFavourite {
     url: string
 }
 
-
 export const AddToFavourite: FC<AddToFavourite> = ({url}) => {
     const dispatch = useDispatch()
     const handleClick = () => {
@@ -14,10 +13,9 @@ export const AddToFavourite: FC<AddToFavourite> = ({url}) => {
     }
 
     return (
-        <div className={"details"}>
-            <div>
-                <button onClick={handleClick}>+</button>
-            </div>
+        <div className={"add-to-favourite"}>
+            <button onClick={handleClick}>+</button>
         </div>
+
     )
 }

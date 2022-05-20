@@ -21,18 +21,18 @@ export const DeleteFromFavourite: FC<DeleteFromFavourite> = ({url}) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-
         (async () => {
             const request = await fetch(url)
             const json = await request.json()
             setCharacter(json)
             setIsDataFetch(true)
-
         })()
     }, [])
+
     const handleClick = () => {
         setModal(!modal)
     }
+
     return (
         <div>
             {isDataFetch &&
@@ -44,7 +44,7 @@ export const DeleteFromFavourite: FC<DeleteFromFavourite> = ({url}) => {
             {modal ? (
                 <Modal>
                     <div>
-                        <h1>Do you want to delete this character to your favourite list?</h1>
+                        <h1>Do you want to delete this character from your favourite list?</h1>
                         <div className={"buttons"}>
                             <button onClick={() => {
                                 dispatch(deleteFromFavourite(url))

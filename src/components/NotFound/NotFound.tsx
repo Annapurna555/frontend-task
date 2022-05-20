@@ -7,10 +7,9 @@ interface NotFound {
 
 export const NotFound: FC<NotFound> = () => {
     return (
-        <div>
+        <div className={"home"}>
             <p>404 - Page not fount</p>
             <Link to={"/"}>Go to home</Link>
         </div>
     )
-
 }
