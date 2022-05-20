@@ -3,6 +3,7 @@ import {useLocation} from "react-router-dom";
 import {AddToFavourite} from "../AddToFavourite/AddToFavourite";
 import {NavBar} from "../NavBar/NavBar";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+import {Footer} from "../Footer/Footer";
 
 
 interface DetailsProps {
@@ -20,9 +21,7 @@ interface Character {
     skin_color: string,
     birth_year: string
     gender: string,
-    homeworld: string
-
-
+    homeWorld: string
 }
 
 export const Details: FC<DetailsProps> = () => {
@@ -33,17 +32,23 @@ export const Details: FC<DetailsProps> = () => {
     const [homeworldValue, setHomeworldValue] = useState<string | undefined>()
     const [error, setError] = useState(false)
     let url: string = ""
+
     if (state) {
         url = state.url
+    } else {
+        throw error
     }
+
     if (error) {
         throw error
     }
+
     useEffect(() => {
         (async () => {
             const response = await fetch(`${url}`)
             if (response.status === 200) {
-                const json = await response.json()
+                const text = await response.text()
+                const json = JSON.parse(text)
                 setCharacter(json)
                 setHomeworldValue(json.homeworld)
             } else {
@@ -54,44 +59,44 @@ export const Details: FC<DetailsProps> = () => {
 
     useEffect(() => {
         (async () => {
-            try {
-                const response = await fetch(`${homeworldValue}`)
-                if (response.status === 200) {
+            const response = await fetch(`${homeworldValue}`)
+            if (response.status === 200) {
+                const contentType = response.headers.get("content-type");
+                if (contentType && contentType.indexOf("application/json") !== -1) {
                     const json = await response.json()
                     setPlace(json.name)
-
                 } else {
-                    setError(true)
+                    return
                 }
-            } catch (error: any) {
-                console.log(homeworldValue)
-
+            } else {
+                setError(true)
             }
         })()
 
     }, [homeworldValue])
+
     return (
         <>
-            <div>
+            <section>
                 {
                     character && place && <div>
                         <NavBar/>
-                        <div>
-                            <>
-                                <h2>Name: {character.name}</h2>
-                                <h2>Height: {character.height}</h2>
-                                <h2>Mass: {character.mass}</h2>
-                                <h2>Hair Color: {character.hair_color}</h2>
-                                <h2>Skin Color: {character.skin_color}</h2>
-                                <h2>Birth of year: {character.birth_year}</h2>
-                                <h2>Gender: {character.gender}</h2>
-                                {homeworldValue && <h2>Homeworld: {place}</h2>}
-                                <AddToFavourite url={url}/>
-                            </>
+                        <h2>Details about {character.name}</h2>
+                        <div className={"details"}>
+                            <h2>Name: {character.name}</h2>
+                            <h2>Height: {character.height}</h2>
+                            <h2>Mass: {character.mass}</h2>
+                            <h2>Hair Color: {character.hair_color}</h2>
+                            <h2>Skin Color: {character.skin_color}</h2>
+                            <h2>Birth of year: {character.birth_year}</h2>
+                            <h2>Gender: {character.gender}</h2>
+                            {homeworldValue && <h2>Homeworld: {place}</h2>}
+                            <AddToFavourite url={url}/>
                         </div>
+                        <Footer/>
                     </div>
                 }
-            </div>
+            </section>
         </>
     );
 }
